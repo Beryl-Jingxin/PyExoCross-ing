@@ -1,20 +1,20 @@
-Database                                ExoMol
+Database                                HITRAN
 
 
 # Basic information #
-Molecule                                MgH
-Isotopologue                            24Mg-1H
-Dataset                                 XAB
-mol_iso_id                              501
+Molecule                                NH3
+Isotopologue                            14N-1H3
+Dataset                                 CoYuTe
+mol_iso_id                              111
 
 
 # File path #
-ReadPath                                /mnt/data/exomol/exomol3_data/
+ReadPath                                /home/jingxin/data/HITRAN/NH3__0-100.par
 SavePath                                /home/jingxin/data/pyexocross/
 
 
 # Functions #
-Conversion                              1
+Conversion                              2
 PartitionFunctions                      0
 CoolingFunctions                        0
 Lifetimes                               0
@@ -24,19 +24,19 @@ CrossSections                           0
 
 
 # Quantum numbers #
-QNslabel                                par  e/f   eS    v     Lambda   Sigma    Omega
-QNsformat                               %1s  %1s   %13s  %3d   %1d      %7s      %7s
+QNslabel                                +/-  e/f   State    v    Lambda   Sigma    Omega
+QNsformat                               %1s  %1s   %5s     %5d   %5d      %5s      %5s
 
 
 # Conversion #
 ConversionFormat                        1  
-ConversionUncertainty                   0.01
-ConversionFrequncyRange                 0                 30000      
-GlobalQNLabel                           eS       v        Omega
-GlobalQNFormat                          %10s     %1d      %4s
+ConversionUncertainty                   0.005
+ConversionFrequncyRange                 0                 63000      
+GlobalQNLabel                           State    v        Omega
+GlobalQNFormat                          %5s      %5d      %5s
 LocalQNLabel                            J        e/f
-LocalQNFormat                           %5.1f    %2s
-                           
+LocalQNFormat                           %5.1f    %1s
+       
 
 # Calculate partition, cooling functions or specific heats #
 Ntemp                                   1                         # The number of temperature steps
@@ -47,21 +47,21 @@ Tmax                                    5000                      # Maximal temp
 None
 
 
-# Calculate stick spectra or cross-sections #
-Temperature                             300
+# Calculate cross-sections #
+Temperature                             200
 Pressure                                1
-Range                                   0          30000
-Npoints/BinSize                         Npoints    30001
+Range                                   1750       2000
+Npoints/BinSize                         Npoints    10001
 
 Cutoff(Y/N)                             N          25             # Default value 25
 Threshold(Y/N)                          N          1e-30          # Default value 1e-30
 UncFilter(Y/N)                          N          0.001
-QNsFilter(Y/N)                          N          par[+]   e/f[e]   v[0,1,2,3]  
+QNsFilter(Y/N)                          N          +/-[+]   e/f[e]   v[0,1,2,3]   
 DopplerHWHM(Y/N)                        Y          3              # Set Doppler HWHM as a constant
-LorentzianHWHM(Y/N)                     N          0.7            # Set Lorentzian HWHM as a constant
+LorentzianHWHM(Y/N)                     Y          0.7            # Set Lorentzian HWHM as a constant  
 
-Broadeners                              Default    Air    Self    H2    He    CO2
-Ratios                                  1.0        0.0    0.0     0.0   0.0   0.0
+Broadeners                              Default    Air    Self    H2    He
+Ratios                                  0.0        1.0    0.0     0.0   0.0
 
 Absorption/Emission                     Absorption                # 'Absorption' or 'Emission'
 Profile                                 SciPyVoigt        
@@ -115,4 +115,3 @@ Note:
    Doppler, Gaussian, Lorentzian, SciPyVoigt, SciPyWofzVoigt, 
    PseudoVoigt, PseudoKielkopfVoigt, PseudoOliveroVoigt, PseudoLiuLinVoigt, PseudoRoccoVoigt,
    BinnedDoppler, BinnedGaussian, BinnedLorentzian, BinnedVoigt.
-

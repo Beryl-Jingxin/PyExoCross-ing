@@ -3,8 +3,8 @@ Database                                ExoMol
 
 # Basic information #
 Molecule                                H3_p
-Isotopologue                            2H3_p
-Dataset                                 MiZo
+Isotopologue                            1H2-2H_p
+Dataset                                 ST
 mol_iso_id                              0
 
 
@@ -26,7 +26,7 @@ CrossSections                           0
 
 # Calculate partition, cooling functions or specific heats #
 Ntemp                                   1                         # The number of temperature steps
-Tmax                                    800                       # Maximal temperature in K (minimal T = 1 K )
+Tmax                                    1750                      # Maximal temperature in K (minimal T = 1 K )
 
 
 # Calculate lifetimes #
