@@ -12,6 +12,8 @@ Welcome to PyExoCross's documentation!
 
    intro.md
    command.md
+   example.md
+   basicinfo.md
    conversion.md
    partitionfunc.md
    coolingfunc.md

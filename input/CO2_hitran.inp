@@ -1,7 +1,5 @@
+# Data source #
 Database                                HITRAN
-
-
-# Basic information #
 Molecule                                CO2
 Isotopologue                            none
 Dataset                                 none

@@ -1,11 +1,9 @@
+# Data source #
 Database                                ExoMol
-
-
-# Basic information #
 Molecule                                MgH
 Isotopologue                            24Mg-1H
 Dataset                                 XAB
-mol_iso_id                              501
+MolIsoID                                501
 
 
 # File path #

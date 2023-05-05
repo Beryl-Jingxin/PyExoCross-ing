@@ -55,7 +55,7 @@ def inp_para(inp_filepath, N_A):
     molecule = inp_df[col0.isin(['Molecule'])]['c1'].values[0]
     isotopologue = inp_df[col0.isin(['Isotopologue'])]['c1'].values
     dataset = inp_df[col0.isin(['Dataset'])]['c1'].values
-    mol_iso_id = int(inp_df[col0.isin(['mol_iso_id'])]['c1'])
+    mol_iso_id = int(inp_df[col0.isin(['MolIsoID'])]['c1'])
     
     # File path
     read_path = inp_df[col0.isin(['ReadPath'])]['c1'].values[0]
