@@ -14,12 +14,12 @@ SavePath                                /home/jingxin/data/pyexocross/
 
 
 # Functions #
-Conversion                              1
+Conversion                              0
 PartitionFunctions                      0
 CoolingFunctions                        0
 Lifetimes                               0
 SpecificHeats                           0
-StickSpectra                            0
+StickSpectra                            1
 CrossSections                           0
 
 
@@ -64,7 +64,7 @@ Broadeners                              Default    Air    Self    H2    He    CO
 Ratios                                  1.0        0.0    0.0     0.0   0.0   0.0
 
 Absorption/Emission                     Absorption                # 'Absorption' or 'Emission'
-Profile                                 SciPyVoigt        
+Profile                                 Gaussian        
 Wavenumber(wn)/wavelength(wl)           wn                        # 'wn' or 'wl'
 
 
