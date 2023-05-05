@@ -67,25 +67,31 @@ File path section records the file path for both reading and saving.
 ```
 
 ```
-  |
-  |-- exomol3_data
-            |-- CO2
-            |-- C2H2
-            |-- MgH
-            |    |-- 24Mg-1H
-            |    |      |-- XAB
-            |    |         |-- 24Mg-1H__XAB.def
-            |    |         |-- 24Mg-1H__XAB.pf
-            |    |         |-- 24Mg-1H__XAB.states.bz2
-            |    |         |-- 24Mg-1H__XAB.trans.bz2
-            |    |--25Mg-1H
-            |    |      |-- XAB
-            |    |         |-- 25Mg-1H__XAB.def
-            |    |         |-- 25Mg-1H__XAB.pf
-            |    |         |-- 25Mg-1H__XAB.states.bz2
-            |    |         |-- 25Mg-1H__XAB.trans.bz2
-            |    |
-            |
+└── exomol3_data
+            ├── CO2
+            │    ├── 12C-16O2
+            │    ├── 13C-16O2
+            │    ├── ...
+            │    ├── 12C-16O2__air.broad
+            │    └── 12C-16O2__self.broad
+            ├── C2H2
+            ├── MgH
+            │    ├── 24Mg-1H
+            │    │      ├── Yadin
+            │    │      └── XAB
+            │    │         ├── 24Mg-1H__XAB.def
+            │    │         ├── 24Mg-1H__XAB.pf
+            │    │         ├── 24Mg-1H__XAB.states.bz2
+            │    │         └── 24Mg-1H__XAB.trans.bz2
+            │    ├── 25Mg-1H
+            │    │      ├── Yadin
+            │    │      └── XAB
+            │    │         ├── 25Mg-1H__XAB.def
+            │    │         ├── 25Mg-1H__XAB.pf
+            │    │         ├── 25Mg-1H__XAB.states.bz2
+            │    │         └── 25Mg-1H__XAB.trans.bz2
+            │    └── 26Mg-1H
+            │
 ```
 
 `SavePath` is the folder path for saving all results obtained by the PyExoCross program.
@@ -106,7 +112,7 @@ SavePath                                /home/jingxin/data/pyexocross/
 /home/username/data/hitran/CO2.par
 ```
 
-*`SavePath` is the folder path for saving all results obtained by the PyExoCross program.*
+`SavePath` is the folder path for saving all results obtained by the PyExoCross program.
 
 *Example*
 
