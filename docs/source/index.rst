@@ -10,6 +10,19 @@ Welcome to PyExoCross's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   intro.md
+   command.md
+   conversion.md
+   partitionfunc.md
+   coolingfunc.md
+   specificheats.md
+   stickspectra.md
+   crosssections.md
+   profiles.md
+   filters.md
+   units.md
+   keywords.md
+   license.md
 
 
 Indices and tables
