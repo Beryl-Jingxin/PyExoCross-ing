@@ -1,7 +1,5 @@
 # Specific heats
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-
 Please provide the line lists, temperature step `Ntemp` and the maximum of the temperature `Tmax`.
 
 `Ntemp` is always set as `1` K.
@@ -11,8 +9,6 @@ Please provide the line lists, temperature step `Ntemp` and the maximum of the t
 The temperatures are start from 1 K to `Tmax` K in the output file.
 
 The specific heats equation is:
-
-\\[C_p(T) = R\left [\frac{Q''}{Q}-\left (\frac{Q'}{Q} \right )^2 \right ]+\frac{5R}{2},\\\]
 
 $$
 C_p(T) = R\left [\frac{Q''}{Q}-\left (\frac{Q'}{Q} \right )^2 \right ]+\frac{5R}{2},
