@@ -1,5 +1,7 @@
 # Specific heats
 
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
 Please provide the line lists, temperature step `Ntemp` and the maximum of the temperature `Tmax`.
 
 `Ntemp` is always set as `1` K.
