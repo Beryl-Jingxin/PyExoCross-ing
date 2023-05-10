@@ -6,7 +6,7 @@
 
 `ConversionFormat`
 
-`0` means no conversion
+`0` means no conversion.
 
 `1` means convert data format from ExoMol to HITRAN. In this case, `Database` should be `ExoMol`.
 
@@ -14,7 +14,7 @@
 
 ## Quantum number label
 
-`GlobalQNLabel` `LocalQNLabel`
+`GlobalQNLabel` and `LocalQNLabel`
 
 Here, the quantum number labels are what kind of quantum numbers you want to save in the output file.
 
@@ -30,7 +30,7 @@ For 3 different symmetry indices and inversional parity labels, please write wri
 
 ## Quantum number format
 
-`GlobalQNFormat` `LocalQNFormat`
+`GlobalQNFormat` and `LocalQNFormat`
 
 Here, the quantum number formats are the formats of quantum numbers you want to save in the output file.
 
@@ -49,9 +49,7 @@ LocalQNLabel                            J        e/f
 LocalQNFormat                           %5.1f    %2s
 ```
 
----
-
-***Note***
+### Note
 
 1. ExoMol definition file `.def` (available at [exomol.com](https://www.exomol.com/)) provides the labels and formats of the quantum numbers for each species for reference.
 2. HITRAN2020 supplementary material ([link](https://hitran.org/media/refs/HITRAN_QN_formats.pdf)) provides the notation and format for quanta identifications for reference.

@@ -1,6 +1,6 @@
 # Basic information
 
-Basic information includes data source and file path.
+Basic information includes data source, file path and functions.
 
 ## Data source
 
@@ -30,7 +30,7 @@ MolIsoID                                501
 
 The `Database` name, `Molecule` name and the molecule and isotopologue ID `MolIsoID` are necessary. The first two digits of `MolIsoID` are molcule ID and the third digit is isotopologue ID and there is no blank between molecule ID and isotopologue ID.
 
-The name of `Isotopologue` and `Dataset` can be set as 'none' or any other words.
+The name of `Isotopologue` and `Dataset` can be set as 'none' or any other strings.
 
 *Example*
 
@@ -47,8 +47,8 @@ MolIsoID                                21
 # Data source #
 Database                                HITRAN
 Molecule                                C2H2
-Isotopologue                            none
-Dataset                                 none
+Isotopologue                            abcd
+Dataset                                 EfGh
 MolIsoID                                261
 ```
 
@@ -107,7 +107,7 @@ SavePath                                /home/jingxin/data/pyexocross/
 
 **For HITRAN**
 
-`ReadPath` is the file path of input line list (.par) file .
+`ReadPath` is the file path of input line list `.par` file.
 
 ```
 /home/username/data/hitran/CO2.par
@@ -129,9 +129,9 @@ In current version, *PyExoCross* can convert data format between the ExoMol and 
 
 Use this function or not:
 
-`0` means no
+`0` means no;
 
-`1` means yes
+`1` means yes.
 
 If the value of a function's second column is `0`, then there is no need to do any changes in this function's own section, the program won't process data with this function. Although this function won't be used by users, please don't delete this function's own section, otherwise, the program cannot run.
 
@@ -148,9 +148,6 @@ StickSpectra                            0
 CrossSections                           1
 ```
 
----
+### Note
 
-***Note***
-
-1. Just change the information which you will use, please do not delete other information. Please do not change the first column strings.
-2. Cooling functions' temperature starts from T = 200 K, the temperature of the other functions (partition functions, specific heats and lifetimes) starts from T = 1 K.
+Just change the information which you will use, please do not delete other information. Please do not change the first column strings.
