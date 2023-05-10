@@ -15,6 +15,7 @@ Welcome to PyExoCross's documentation!
    examples.md
    basicinfo.md
    conversion.md
+   partitionfunc.rst
    partitionfunc.md
    specificheats.md
    coolingfunc.md

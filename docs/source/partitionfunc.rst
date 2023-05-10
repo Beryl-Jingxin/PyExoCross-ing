@@ -10,9 +10,7 @@ The temperatures are start from 1 K to `Tmax` K in the output file.
 
 The partition functions equation is:
 
-$$
-Q(T)=\sum_n g_n^{\textrm{tot}} e^{-c_2\tilde{E}_n/T}.
-$$
+:math:`Q(T)=\sum_n g_n^{\textrm{tot}} e^{-c_2\tilde{E}_n/T}`.
 
 *Example*
 
