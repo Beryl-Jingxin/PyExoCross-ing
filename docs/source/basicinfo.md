@@ -147,7 +147,3 @@ Lifetimes                               0
 StickSpectra                            0
 CrossSections                           1
 ```
-
-### Note
-
-Just change the information which you will use, please do not delete other information. Please do not change the first column strings.

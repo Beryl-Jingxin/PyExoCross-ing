@@ -1,5 +1,7 @@
 # Examples
 
+The examples of the whole input files for the ExoMol and HITRAN databases.
+
 ## Example for the ExoMol database
 
 ```bash

@@ -12,12 +12,13 @@ Welcome to PyExoCross's documentation!
 
    intro.md
    command.md
-   example.md
+   examples.md
    basicinfo.md
    conversion.md
    partitionfunc.md
-   coolingfunc.md
    specificheats.md
+   coolingfunc.md
+   lifetimes.md
    stickspectra.md
    crosssections.md
    profiles.md

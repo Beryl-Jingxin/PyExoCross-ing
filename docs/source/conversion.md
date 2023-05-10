@@ -49,7 +49,7 @@ LocalQNLabel                            J        e/f
 LocalQNFormat                           %5.1f    %2s
 ```
 
-### Note
+### Notes
 
 1. ExoMol definition file `.def` (available at [exomol.com](https://www.exomol.com/)) provides the labels and formats of the quantum numbers for each species for reference.
 2. HITRAN2020 supplementary material ([link](https://hitran.org/media/refs/HITRAN_QN_formats.pdf)) provides the notation and format for quanta identifications for reference.
