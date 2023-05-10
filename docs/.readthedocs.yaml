@@ -27,6 +27,11 @@ sphinx:
 markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
+  - extra
+  - tables
+  - mdx_math:
+      enable_dollar_delimiter: True
+  - fenced_code
 
 extra_javascript:
   - javascripts/mathjax.js
