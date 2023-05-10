@@ -14,8 +14,8 @@ SavePath                                /home/jingxin/data/pyexocross/
 # Functions #
 Conversion                              1
 PartitionFunctions                      0
-CoolingFunctions                        0
 SpecificHeats                           0
+CoolingFunctions                        0
 Lifetimes                               0
 StickSpectra                            0
 CrossSections                           0
@@ -36,7 +36,7 @@ LocalQNLabel                            J        e/f
 LocalQNFormat                           %5.1f    %2s
                            
 
-# Calculate partition, cooling functions or specific heats #
+# Calculate partition, specific heats or cooling functions #
 Ntemp                                   1                         # The number of temperature steps
 Tmax                                    5000                      # Maximal temperature in K 
 

@@ -125,7 +125,11 @@ SavePath                                /home/jingxin/data/pyexocross/
 
 ## Functions
 
-In current version, *PyExoCross* can convert data format between the ExoMol and the HITRAN formats. *PyExoCross* also implements the computations of other useful functions including partition functions, specific heats, cooling functions, radiative lifetimes, stick spectra and cross sections.
+In current version, *PyExoCross* can convert data format between the ExoMol and the HITRAN formats. 
+
+*PyExoCross* also implements the computations of other useful functions including partition functions, specific heats, cooling functions, radiative lifetimes, stick spectra and cross sections for data from the ExoMol database. 
+
+*PyExoCross* provides computations of cross sections for data from the HITRAN database. If you want to use the other functions, please convert the data format from the HITRAN format to the ExoMol format at first and then treat the data as the ExoMol data to use *PyExoCross*.
 
 Use this function or not:
 
