@@ -68,30 +68,31 @@ File path section records the file path for both reading and saving.
 
 ```
 └── exomol3_data
-            ├── CO2
-            │    ├── 12C-16O2
-            │    ├── 13C-16O2
-            │    ├── ...
-            │    ├── 12C-16O2__air.broad
-            │    └── 12C-16O2__self.broad
-            ├── C2H2
-            ├── MgH
-            │    ├── 24Mg-1H
-            │    │      ├── Yadin
-            │    │      └── XAB
-            │    │         ├── 24Mg-1H__XAB.def
-            │    │         ├── 24Mg-1H__XAB.pf
-            │    │         ├── 24Mg-1H__XAB.states.bz2
-            │    │         └── 24Mg-1H__XAB.trans.bz2
-            │    ├── 25Mg-1H
-            │    │      ├── Yadin
-            │    │      └── XAB
-            │    │         ├── 25Mg-1H__XAB.def
-            │    │         ├── 25Mg-1H__XAB.pf
-            │    │         ├── 25Mg-1H__XAB.states.bz2
-            │    │         └── 25Mg-1H__XAB.trans.bz2
-            │    └── 26Mg-1H
-            │
+           ├── C2H2
+           ├── CO2
+           │     ├── 12C-16O2
+           │     ├── 13C-16O2
+           │     ├── ...
+           │     ├── 12C-16O2__air.broad
+           │     └── 12C-16O2__self.broad
+           ├── MgH
+           │     ├── 24Mg-1H
+           │     │       ├── Yadin
+           │     │       └── XAB
+           │     │            ├── 24Mg-1H__XAB.def
+           │     │            ├── 24Mg-1H__XAB.pf
+           │     │            ├── 24Mg-1H__XAB.states.bz2
+           │     │            └── 24Mg-1H__XAB.trans.bz2
+           │     ├── 25Mg-1H
+           │     │       ├── Yadin
+           │     │       └── XAB
+           │     │            ├── 25Mg-1H__XAB.def
+           │     │            ├── 25Mg-1H__XAB.pf
+           │     │            ├── 25Mg-1H__XAB.states.bz2
+           │     │            └── 25Mg-1H__XAB.trans.bz2
+           │     └── 26Mg-1H
+           ├── ...
+           │
 ```
 
 `SavePath` is the folder path for saving all results obtained by the PyExoCross program.
@@ -121,3 +122,35 @@ SavePath                                /home/jingxin/data/pyexocross/
 ReadPath                                /home/jingxin/data/HITRAN/CO2.par
 SavePath                                /home/jingxin/data/pyexocross/
 ```
+
+## Functions
+
+In current version, *PyExoCross* can convert data format between the ExoMol and the HITRAN formats. *PyExoCross* also implements the computations of other useful functions including partition functions, specific heats, cooling functions, radiative lifetimes, stick spectra and cross sections.
+
+Use this function or not:
+
+`0` means no
+
+`1` means yes
+
+If the value of a function's second column is `0`, then there is no need to do any changes in this function's own section, the program won't process data with this function. Although this function won't be used by users, please don't delete this function's own section, otherwise, the program cannot run.
+
+*Example*
+
+```bash
+# Functions #
+Conversion                              0
+PartitionFunctions                      0
+SpecificHeats                           1
+CoolingFunctions                        0
+Lifetimes                               0
+StickSpectra                            0
+CrossSections                           1
+```
+
+---
+
+***Note***
+
+1. Just change the information which you will use, please do not delete other information. Please do not change the first column strings.
+2. Cooling functions' temperature starts from T = 200 K, the temperature of the other functions (partition functions, specific heats and lifetimes) starts from T = 1 K.

@@ -16,6 +16,8 @@ Prepare an input file *filename.inp* (see examples in the 'input' folder on GitH
 python pyexocross.py -p input_filepath
 ```
 
+*Example*
+
 If the input filepath is `/home/username/PyExoCross/input/MgH_exomol.inp`
 
 ```bash
@@ -28,6 +30,7 @@ If you want to run program in conda environment, please use command
 /home/username/anaconda3/envs/exomol/bin/python pyexocross.py -p /home/username/PyExoCross/input/MgH_exomol.inp
 ```
 
-***Note***
+## Notes for input file
 
-All information can be written in the input file. Just change the information you will use, please do not change the other unnecessary information.
+1. All information can be written in the input file. Just change the information you will use, please do not change the first column information or delete the other unnecessary information.
+2. If you met problems, jupyter notebook `.ipynb` code is stored for checking and testing.

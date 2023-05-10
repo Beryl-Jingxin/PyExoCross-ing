@@ -84,7 +84,7 @@ Note:
    Functions part: (calculate the functions or not) 0 means no, 1 means yes. 
    Just change the information which you will use, please do not delete other information.
    (Cooling function's minimal T = 200 K, others (partition function, specific heat and lifetime) minimal T = 1 K )
-4. Conversion
+4. ConversionFormat
    0: no conversion
    1: from ExoMol to HITRAN
    2: from HITRAN to ExoMol
@@ -137,7 +137,7 @@ SavePath                                /home/jingxin/data/pyexocross/
 
 
 # Functions #
-Conversion                              2
+Conversion                              1
 PartitionFunctions                      0
 CoolingFunctions                        0
 Lifetimes                               0
@@ -152,7 +152,7 @@ QNsformat                               %1s  %1s   %13s  %3d   %1d      %7s     
 
 
 # Conversion #
-ConversionFormat                        1  
+ConversionFormat                        2  
 ConversionUncertainty                   0.005
 ConversionFrequncyRange                 0                 30000  
 GlobalQNLabel                           eS       v        Omega
@@ -204,7 +204,7 @@ Note:
    Functions part: (calculate the functions or not) 0 means no, 1 means yes. 
    Just change the information which you will use, please do not delete other information.
    (Cooling function's minimal T = 200 K, others (partition function, specific heat and lifetime) minimal T = 1 K )
-4. Conversion
+4. ConversionFormat
    0: no conversion
    1: from ExoMol to HITRAN
    2: from HITRAN to ExoMol
