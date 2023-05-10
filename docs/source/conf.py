@@ -38,7 +38,6 @@ version = '1.0'
 extensions = [
     'recommonmark',
     'sphinx_markdown_tables',
-    'myst_nb',
     'sphinx.ext.duration',
     'sphinx.ext.doctest',
     'sphinx.ext.autodoc',
@@ -48,8 +47,7 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.imgmath',
     'sphinx.ext.ifconfig',
-    'sphinx.ext.viewcode',
-    
+    'sphinx.ext.viewcode'
 ]
 
 intersphinx_mapping = {
