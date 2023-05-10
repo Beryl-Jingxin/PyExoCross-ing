@@ -10,6 +10,10 @@ The temperatures are start from 1 K to `Tmax` K in the output file.
 
 The partition functions equation is:
 
+```javascript
+$$Q(T)=\sum_n g_n^{\textrm{tot}} e^{-c_2\tilde{E}_n/T}.$$
+```
+
 $$
 Q(T)=\sum_n g_n^{\textrm{tot}} e^{-c_2\tilde{E}_n/T}.
 $$
