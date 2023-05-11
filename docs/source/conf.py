@@ -47,7 +47,10 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.imgmath',
     'sphinx.ext.ifconfig',
-    'sphinx.ext.viewcode'
+    'sphinx.ext.viewcode',
+    'sphinx.ext.mathjax',
+    'sphinx.ext.viewcode',
+    'sphinx.ext.githubpages'
 ]
 
 intersphinx_mapping = {
@@ -157,7 +160,7 @@ latex_elements = {
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,
-#  author, documentclass [howto, manual, or own class]).
+#  author, documentclass [how to, manual, or own class]).
 latex_documents = [
     (master_doc, 'PyExoCross.tex', 'PyExoCross Documentation',
      'Jingxin Zhang', 'manual'),
