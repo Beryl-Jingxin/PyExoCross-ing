@@ -23,3 +23,4 @@ Tmax                                    5000                      # Maximal temp
 ***Note***
 
 If the line lists data is not in the ExoMol format, please convert your data format into the ExoMol format at first and then compute partition functions with *PyExoCross*.
+
