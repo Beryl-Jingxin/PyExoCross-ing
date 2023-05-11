@@ -25,6 +25,7 @@ sphinx:
 
 # Build documentation in the docs/ directory with MKDocs
 markdown_extensions:
+  - pymdownx.superfences
   - pymdownx.arithmatex:
       generic: true
   - extra
@@ -33,6 +34,7 @@ markdown_extensions:
       enable_dollar_delimiter: True
   - fenced_code
   - admonition
+  - codehilite
 
 extra_javascript:
   - javascripts/mathjax.js
