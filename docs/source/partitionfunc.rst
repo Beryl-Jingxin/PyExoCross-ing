@@ -26,7 +26,7 @@ The partition functions equation is:
    Ntemp                                   1                         # The number of temperature steps
    Tmax                                    5000                      # Maximal temperature in K 
 
-**Note**
+***Note***
 
 If the line lists data is not in the ExoMol format, please convert your
 data format into the ExoMol format at first and then compute partition
