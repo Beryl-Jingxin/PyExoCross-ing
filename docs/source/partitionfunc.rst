@@ -1,4 +1,5 @@
-# Partition functions
+Partition functions
+===================
 
 Please provide the line lists, temperature step `Ntemp` and the maximum of the temperature `Tmax`.
 
