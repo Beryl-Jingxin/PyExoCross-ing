@@ -51,6 +51,7 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages'
+    'sphinx.ext.napoleon',
 ]
 
 intersphinx_mapping = {
@@ -208,7 +209,5 @@ epub_exclude_files = ['search.html']
 
 # favicon
 html_favicon = 'favicon.ico'
-
-
 
 # -- Extension configuration -------------------------------------------------
