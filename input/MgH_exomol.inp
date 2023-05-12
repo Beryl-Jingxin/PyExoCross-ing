@@ -91,7 +91,7 @@ Note:
 5. Broadeners; Ratios
    The broadening types and ratio values are corresponding, please do not change the place or delete elements. 
 6. Range
-   Give two values as the minimum and maximum of the wavenumber range. No ',' or ';' between these two numbers, just leave spaces here.
+   Give two values as the minimum and maximum of the wavenumber range. No ',' or ';' between these two numbers, just leave blank here.
 7. Npoints/BinSize
    e.g. 'Npoints      100001' or 'BinSize    1'.
 8. Cutoff(Y/N); Threshold(Y/N); UncFilter(Y/N); QNsFilter(Y/N)

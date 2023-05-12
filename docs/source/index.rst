@@ -21,8 +21,6 @@ Welcome to PyExoCross's documentation!
    lifetimes.rst
    stickspectra.rst
    crosssections.rst
-   profiles.md
-   filters.md
    units.md
    keywords.md
    license.md

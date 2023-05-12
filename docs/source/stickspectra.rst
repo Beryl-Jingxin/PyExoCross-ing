@@ -4,8 +4,7 @@ Stick spectra
 Please provide the line lists, ``Temperature``, ``Pressure``, 
 wavenumber ``Range`` and uncertainty filter ``UncFilter``.
 
-``UncFilter`` means uncertainty filter. 
-If you don't use the uncertainty filter, write ``N`` here. 
+If you don't use the uncertainty filter ``UncFilter``, write ``N`` here. 
 You don't need to change the number behind it.
 
 The intensity equation is:

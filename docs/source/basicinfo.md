@@ -13,7 +13,7 @@ In data source section, please provide:
 
 The name of `Database`, `Molecule`, `Isotopologue` and `Dataset` are necessary.
 
-The molecule and isotopologue ID `MolIsoID` can be set as '0' or any other integers.
+The molecule and isotopologue ID `MolIsoID` can be set as `0` or any other integers.
 
 *Example*
 
@@ -125,9 +125,9 @@ SavePath                                /home/jingxin/data/pyexocross/
 
 ## Functions
 
-In current version, *PyExoCross* can convert data format between the ExoMol and the HITRAN formats. 
+In current version, *PyExoCross* can convert data format between the ExoMol and the HITRAN formats.
 
-*PyExoCross* also implements the computations of other useful functions including partition functions, specific heats, cooling functions, radiative lifetimes, stick spectra and cross sections for data from the ExoMol database. 
+*PyExoCross* also implements the computations of other useful functions including partition functions, specific heats, cooling functions, radiative lifetimes, stick spectra and cross sections for data from the ExoMol database.
 
 *PyExoCross* provides computations of cross sections for data from the HITRAN database. If you want to use the other functions, please convert the data format from the HITRAN format to the ExoMol format at first and then treat the data as the ExoMol data to use *PyExoCross*.
 
