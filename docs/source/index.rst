@@ -16,11 +16,11 @@ Welcome to PyExoCross's documentation!
    basicinfo.md
    conversion.md
    partitionfunc.rst
-   specificheats.md
-   coolingfunc.md
-   lifetimes.md
-   stickspectra.md
-   crosssections.md
+   specificheats.rst
+   coolingfunc.rst
+   lifetimes.rst
+   stickspectra.rst
+   crosssections.rst
    profiles.md
    filters.md
    units.md
