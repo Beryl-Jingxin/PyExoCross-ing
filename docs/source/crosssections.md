@@ -33,6 +33,10 @@ Choose line profile from:
 *Example*
 
 ```bash
+# Quantum numbers #
+QNslabel                                par  e/f   eS    v     Lambda   Sigma    Omega
+QNsformat                               %1s  %1s   %13s  %3d   %1d      %7s      %7s
+
 # Calculate stick spectra or cross-sections #
 Temperature                             300
 Pressure                                1
@@ -55,6 +59,10 @@ Wavenumber(wn)/wavelength(wl)           wn                        # 'wn' or 'wl'
 ```
 
 ```bash
+# Quantum numbers #
+QNslabel                                par  e/f   eS    v     Lambda   Sigma    Omega
+QNsformat                               %1s  %1s   %13s  %3d   %1d      %7s      %7s
+
 # Calculate stick spectra or cross-sections #
 Temperature                             1000
 Pressure                                1.2
