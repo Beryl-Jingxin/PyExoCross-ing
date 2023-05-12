@@ -10,9 +10,9 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-import os
-import sys
-sys.path.insert(0, os.path.abspath('.'))
+# import os
+# import sys
+# sys.path.insert(0, os.path.abspath('.'))
 
 
 # -- Project information -----------------------------------------------------
@@ -107,6 +107,7 @@ pygments_style = None
 #
 html_theme = 'bizstyle'
 # html_theme = 'alabaster'
+
 
 # -- Options for EPUB output
 epub_show_urls = 'footnote'
