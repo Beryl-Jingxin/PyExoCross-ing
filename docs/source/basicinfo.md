@@ -151,3 +151,24 @@ Lifetimes                               0
 StickSpectra                            0
 CrossSections                           1
 ```
+
+## Quantum Numbers
+
+Please provide the labels `QNslabel` and formats `QNsformat` of the quantum numbers when you use *PyExoCross* to convert data format, calculate stick spectra or cross sections if you need the quantum filter.
+
+* The definition file `.def` of ExoMol database (available at [exomol.com](https://www.exomol.com/)) provides the labels and formats of the quantum numbers for each species for reference.
+* HITRAN2020 supplementary material ([link](https://hitran.org/media/refs/HITRAN_QN_formats.pdf)) provides the notation and format for quanta identifications for reference.
+
+**Note**
+
+You can define the quantum number column name by yourself, but please make sure it has letters without any spaces.
+e.g. 'c1', 'c2', 'v1', 'v2', 'electronicState', 'electronic_state', '1v', '2v', 'M/E/C'.
+Wrong format of the quantum number column nams: '1', '2', 'electronic state'.
+
+*Example*
+
+```bash
+# Quantum numbers #
+QNslabel                                par  e/f   eS    v     Lambda   Sigma    Omega
+QNsformat                               %1s  %1s   %13s  %3d   %1d      %7.1f    %7.1f
+```

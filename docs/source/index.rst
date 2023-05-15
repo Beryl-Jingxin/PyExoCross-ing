@@ -20,9 +20,7 @@ Welcome to PyExoCross's documentation!
    coolingfunc.rst
    lifetimes.rst
    stickspectra.rst
-   crosssections.rst
-   units.md
-   keywords.md
+   crosssections.md
    license.md
 
 
