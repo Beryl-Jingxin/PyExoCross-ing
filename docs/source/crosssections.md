@@ -21,7 +21,7 @@ Absorption/Emission                     Absorption                # 'Absorption'
 Wavenumber(wn)/wavelength(wl)           wn                        # 'wn' or 'wl'
 ```
 
-## **Filters**
+## Filters
 
 `Y/N`: `Y`, `YES`, `Yes`, `yes` and `N`, `NO`, `No`, `no` all can work. If you don't use it, write `N` here. You don't need to change the content behind it.
 
@@ -45,7 +45,7 @@ DopplerHWHM(Y/N)                        Yes        3              # Set Doppler 
 LorentzianHWHM(Y/N)                     yes        0.7            # Set Lorentzian HWHM as a constant
 ```
 
-## Broadener
+## Broadeners
 
 `Default` means:
 
