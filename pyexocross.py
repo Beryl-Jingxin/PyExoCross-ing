@@ -2854,7 +2854,7 @@ def get_crosssection(read_path, states_part_df, trans_part_df, hitran_df):
             coef = cal_abscoefs(v, gp, A, Epp, Q, abundance)
         elif abs_emi == 'Emission': 
             print('Emission cross section')
-            A, v, Epp, gp, gamma_L, n_air = linelist_exomol_emi(cutoff,broad,ratio,nbroad,broad_dfs,states_part_df,trans_part_df)
+            A, v, Ep, gp, gamma_L, n_air = linelist_exomol_emi(cutoff,broad,ratio,nbroad,broad_dfs,states_part_df,trans_part_df)
             coef = cal_emicoefs(v, gp, A, Ep, Q, abundance)
         else:
             raise ImportError("Please choose one from: 'Absoption' or 'Emission'.")         
