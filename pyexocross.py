@@ -2772,8 +2772,7 @@ def plot_xsec(wn, xsec, database, profile):
         
         # Plot cross sections and save it as .png.
         plt.figure(figsize=(12, 6))
-        #plt.ylim([1e-30, 10*max(xsec)])
-        #plt.ylim([1e-30, 10*max(xsec)])
+        plt.ylim([1e-30, 10*max(xsec)])
         plt.plot(wn, xsec, label='T = '+str(T)+' K, '+profile, linewidth=0.4)
         plt.semilogy()
         #plt.title(database+' '+molecule+' '+abs_emi+' Cross-Section with '+ profile) 
