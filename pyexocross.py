@@ -268,8 +268,6 @@ def inp_para(inp_filepath):
 # Constants and parameters
 # Parameters for calculating
 import astropy.constants as ac
-# Parameters for calculating
-import astropy.constants as ac
 #from astropy import constants, units as ac, au
 Tref = 296.0                        # Reference temperature is 296 K
 Pref = 1.0                          # Reference pressure is 1 bar
@@ -313,8 +311,7 @@ binSize2 = bin_size * 2
 binSizePI = bin_size * np.pi
 binSizePI32 = bin_size * np.pi**1.5
 binSizeHalf = bin_size / 2 
-# Sqrt2NAkBln2mInvc = np.sqrt(2 * kB * np.log(2) / (mass*au.u.to(au.g))) / c
-                    # Second radiation constant (cm K)
+
 
 # Read input files
 ''' Read the parameters of the linelist in ExoMol or HITRAN format text file. 
@@ -332,8 +329,10 @@ def read_all_states(read_path):
                                             chunksize=100000, iterator=True, low_memory=False, dtype=object)
         for chunk in s_df[states_filename]:
             states_df = pd.concat([states_df, chunk])
-            
-    pd.set_option("display.max_columns",30)                           
+    if check_uncertainty == 1:
+        states_df = states_df.rename(columns={0:'id',1:'E',2:'g',3:'J',4:'unc'})
+    else:      
+        states_df = states_df.rename(columns={0:'id',1:'E',2:'g',3:'J'})                        
     return(states_df)
 
 # Read transitions file
@@ -376,14 +375,12 @@ def read_all_trans(read_path):
     trans_df = pd.DataFrame()
     trans_col_name = ['u', 'l', 'A', 'v']
     trans_filepaths = get_transfiles(read_path)
-
+    print('Reading the transitions ...')
     for trans_filename in tqdm(trans_filepaths):
         t_df[trans_filename] = pd.read_csv(trans_filename, compression='bz2', sep='\s+', header=None,
                                            names=trans_col_name, chunksize=100000, iterator=True, low_memory=False)
         for chunk in t_df[trans_filename]:
-            trans_df = pd.concat([trans_df,chunk])
-            
-    #pd.set_option("display.max_columns",30)                           
+            trans_df = pd.concat([trans_df,chunk])                        
     return(trans_df)
     
     
@@ -435,8 +432,7 @@ def read_broad(read_path):
                 broad_dfs.append(broad_df)
             else:
                 broadener_name = str(broadeners[i])
-                #pattern_broadener = read_path + molecule + '/**/*' + broadener_name + '.broad'
-                pattern_broadener = '/home/jingxin/PyExoCross-ing/input/' + molecule + '/**/*' + broadener_name + '.broad'
+                pattern_broadener = read_path + molecule + '/**/*' + broadener_name + '.broad'
                 if glob.glob(pattern_broadener, recursive=True) != []:
                     for fname_broadener in glob.glob(pattern_broadener, recursive=True):
                         broad_df = pd.read_csv(fname_broadener, sep='\s+', header=None, engine='python')
@@ -537,14 +533,12 @@ def calculate_partition(En, gn, T):
 
 # Partition function
 def exomol_partition_func(states_df, Ntemp, Tmax):
-    
     print('Calculate partition functions.')  
     t = Timer()
     t.start()
     
-    #states_df = read_all_states(read_path)
-    En = states_df[1].astype('float').values
-    gn = states_df[2].astype('int').values
+    En = states_df['E'].astype('float').values
+    gn = states_df['g'].astype('int').values
     Ts = np.array(range(Ntemp, Tmax+1, Ntemp)) 
     
     partition_func = [calculate_partition(En, gn, T) for T in Ts]
@@ -558,7 +552,7 @@ def exomol_partition_func(states_df, Ntemp, Tmax):
         pass
     else:
         os.makedirs(pf_folder, exist_ok=True)
-    pf_path = (pf_folder + isotopologue + '__' + dataset + '.pf')
+    pf_path = pf_folder + isotopologue + '__' + dataset + '.pf'
     np.savetxt(pf_path, partition_func_df, fmt="%8.1f %15.4f")
     
     t.end()
@@ -578,10 +572,9 @@ def exomol_specificheat(states_df, Ntemp, Tmax):
     print('Calculate specific heats.')  
     t = Timer()
     t.start()
-    
-    #states_df = read_all_states(read_path)
-    En = states_df[1].astype('float').values
-    gn = states_df[2].astype('int').values
+
+    En = states_df['E'].astype('float').values
+    gn = states_df['g'].astype('int').values
     Ts = np.array(range(200, Tmax+1, Ntemp)) 
     
     specificheat_func = [calculate_specific_heats(En, gn, T) for T in Ts]
@@ -595,7 +588,7 @@ def exomol_specificheat(states_df, Ntemp, Tmax):
         pass
     else:
         os.makedirs(cp_folder, exist_ok=True)  
-    cp_path = (cp_folder + isotopologue + '__' + dataset + '.cp')
+    cp_path = cp_folder + isotopologue + '__' + dataset + '.cp'
     np.savetxt(cp_path, specificheat_func_df, fmt="%8.1f %15.4f")
 
     t.end()
@@ -604,20 +597,17 @@ def exomol_specificheat(states_df, Ntemp, Tmax):
 
 # Lifetime
 def exomol_lifetime(read_path, states_df, all_trans_df):
-    
     print('Calculate lifetimes.')  
     t = Timer()
     t.start()
     
-    #states_df = read_all_states(read_path)
-    #all_trans_df = read_all_trans(read_path)
     sum_A = all_trans_df.groupby('u')['A'].sum()
     lifetime = ne.evaluate('1 / sum_A') 
-    lt_df = lifetime.map('{: >12.4E}'.format).reset_index()
+    lt_df = pd.Series(lifetime).map('{: >12.4E}'.format).reset_index()
     lt_df.columns=['u','lt']
     uid = lt_df['u']
     add_u = pd.DataFrame()
-    add_u['u'] = pd.concat([states_df[0].astype('int'), uid]).drop_duplicates(keep=False)
+    add_u['u'] = pd.concat([states_df['id'].astype('int'), uid]).drop_duplicates(keep=False)
     add_u['lt'] = '         inf'
     lifetime_df = pd.concat([lt_df, add_u], ignore_index=True)
     lifetime_df.sort_values('u',inplace=True)
@@ -641,23 +631,24 @@ def exomol_lifetime(read_path, states_df, all_trans_df):
     else:
         os.makedirs(lf_folder, exist_ok=True)  
         
-    ##### bz2 #####
-    '''
-    lf_path = (lf_folder + isotopologue + '__' + dataset + '.states.bz2')[0]
+    ####### bz2 ######
+    lf_path = lf_folder + isotopologue + '__' + dataset + '.states.bz2'
 
     with bz2.open(lf_path, 'wt') as f:
         for i in range(nrows):
             f.write(new_rows[i])
-        f.close'''
-    ###############
+        f.close
+    ##################
     
     ##### states #####
-    lf_path = (lf_folder + isotopologue + '__' + dataset + '.states')
+    '''
+    lf_path = lf_folder + isotopologue + '__' + dataset + '.states'
 
     with open(lf_path, 'wt') as f:
         for i in range(nrows):
             f.write(new_rows[i])
         f.close
+    '''
     ##################
 
     t.end()
@@ -666,13 +657,11 @@ def exomol_lifetime(read_path, states_df, all_trans_df):
 
 # Calculate cooling function
 def linelist_coolingfunc(states_df, all_trans_df):
-    #states_df = read_all_states(read_path)
-    #all_trans_df = read_all_trans(read_path)
     id_u = all_trans_df['u'].values
     id_l = all_trans_df['l'].values
-    states_df[0] = pd.to_numeric(states_df[0])
-    states_df.set_index([0], inplace=True, drop=False)
-    id_s = states_df[0]
+    states_df['id'] = pd.to_numeric(states_df['id'])
+    states_df.set_index(['id'], inplace=True, drop=False)
+    id_s = states_df['id']
     all_trans_df.set_index(['u'], inplace=True, drop=False)
     id_us = list(set(id_u).intersection(set(id_s)))
     trans_us_df = all_trans_df.loc[id_us]
@@ -685,14 +674,14 @@ def linelist_coolingfunc(states_df, all_trans_df):
     states_u_df = states_df.loc[id_su]
     states_l_df = states_df.loc[id_sl]
 
-    Ep = states_u_df[1].values.astype('float')
-    gp = states_u_df[2].values.astype('int')
+    Ep = states_u_df['E'].values.astype('float')
+    gp = states_u_df['g'].values.astype('int')
     A = trans_s_df['A'].values.astype('float')
 
     if pd.isna(all_trans_df['v']).iloc[0] == False:
         v = trans_s_df['v'].values.astype('float')
     else:
-        Epp = states_l_df[1].astype('float') # Upper state energy
+        Epp = states_l_df['E'].astype('float') # Upper state energy
         v = cal_v(Ep, Epp) 
     return (A, v, Ep, gp)
 
@@ -704,7 +693,6 @@ def calculate_cooling(A, v, Ep, gp, T, Q):
 
 # Cooling function
 def exomol_cooling_func(read_path, states_df, all_trans_df, Ntemp, Tmax):
-    
     print('Calculate cooling functions.')  
     t = Timer()
     t.start()
@@ -724,7 +712,7 @@ def exomol_cooling_func(read_path, states_df, all_trans_df, Ntemp, Tmax):
         pass
     else:
         os.makedirs(cf_folder, exist_ok=True)  
-    cf_path = (cf_folder + isotopologue + '__' + dataset + '.cf') 
+    cf_path = cf_folder + isotopologue + '__' + dataset + '.cf'
     np.savetxt(cf_path, cooling_func_df, fmt="%8.1f %20.8E")
     
     t.end()
@@ -735,13 +723,13 @@ def exomol_cooling_func(read_path, states_df, all_trans_df, Ntemp, Tmax):
 # Process data for calculating cross sections
 def read_part_states(states_df):
     if UncFilter != 'None':
-        states_part_df = states_df[states_df[4].astype(float) <= UncFilter]
-        states_part_df[0] = pd.to_numeric(states_part_df[0])
-        states_part_df.set_index([0], inplace=True, drop=False)
+        states_part_df = states_df[states_df['unc'].astype(float) <= UncFilter]
+        states_part_df['id'] = pd.to_numeric(states_part_df['id'])
+        states_part_df.set_index(['id'], inplace=True, drop=False)
     else:
         states_part_df = states_df
-        states_part_df[0] = pd.to_numeric(states_part_df[0])
-        states_part_df.set_index([0], inplace=True, drop=False)
+        states_part_df['id'] = pd.to_numeric(states_part_df['id'])
+        states_part_df.set_index(['id'], inplace=True, drop=False)
     if check_uncertainty == 1:
         col_unc = ['unc']
     else:
@@ -870,13 +858,11 @@ def convert_QNValues_exomol2hitran(states_unc_df, GlobalQNLabel_list, LocalQNLab
 
 def read_unc_states(states_df):
     if Conversion != 0:
-        states_unc_df = states_df[states_df[4].astype(float) <= ConversionUnc]
-        states_unc_df[0] = pd.to_numeric(states_unc_df[0])
-        states_unc_df.set_index([0], inplace=True, drop=False)
+        states_unc_df = states_df[states_df['unc'].astype(float) <= ConversionUnc]
+        states_unc_df.set_index(['id'], inplace=True, drop=False)
     else:
         states_unc_df = states_df
-        states_unc_df[0] = pd.to_numeric(states_unc_df[0])
-        states_unc_df.set_index([0], inplace=True, drop=False)
+        states_unc_df.set_index(['id'], inplace=True, drop=False)
     if check_uncertainty == 1:
         col_unc = ['unc']
     else:
@@ -890,7 +876,6 @@ def read_unc_states(states_df):
     else:
         col_gfac = []
     fullcolname = ['id','E','g','J'] + col_unc + col_lifetime + col_gfac + QNslabel_list
-    states_unc_df.drop(states_unc_df.columns[len(fullcolname):], axis=1, inplace=True)
     states_unc_df.columns = fullcolname  
     colnames = ['id','E','g'] + col_unc + GlobalQNLabel_list + LocalQNLabel_list
     states_unc_df = states_unc_df[colnames] 
@@ -912,8 +897,10 @@ def convert_QNFormat_exomol2hitran(states_u_df, states_l_df, GlobalQNLabel_list,
             gQNp[gQN_label+"'"] = pd.Series(pd.to_numeric(states_u_df[gQN_label].values)).parallel_map(gQN_format.format)
             gQNpp[gQN_label+'"'] = pd.Series(pd.to_numeric(states_l_df[gQN_label].values)).parallel_map(gQN_format.format)
         elif 's' in gQN_format or 'a' in gQN_format: 
-            gQNp[gQN_label+"'"] = pd.Series(states_u_df[gQN_label].str.replace('(','').str.replace(')','').values).parallel_map(gQN_format.format)
-            gQNpp[gQN_label+'"'] = pd.Series(states_l_df[gQN_label].str.replace('(','').str.replace(')','').values).parallel_map(gQN_format.format)
+            gQNp[gQN_label+"'"] = pd.Series(states_u_df[gQN_label].str.replace('(','',regex=True)
+                                            .str.replace(')','',regex=True).values).parallel_map(gQN_format.format)
+            gQNpp[gQN_label+'"'] = pd.Series(states_l_df[gQN_label].str.replace('(','',regex=True)
+                                             .str.replace(')','',regex=True).values).parallel_map(gQN_format.format)
     globalQNp = pd.DataFrame(gQNp).sum(axis=1).map('{: >15}'.format) 
     globalQNpp = pd.DataFrame(gQNpp).sum(axis=1).map('{: >15}'.format)  
 
@@ -927,8 +914,10 @@ def convert_QNFormat_exomol2hitran(states_u_df, states_l_df, GlobalQNLabel_list,
             lQNp[lQN_label+"'"] = pd.Series(pd.to_numeric(states_u_df[lQN_label].values)).parallel_map(lQN_format.format)
             lQNpp[lQN_label+'"'] = pd.Series(pd.to_numeric(states_l_df[lQN_label].values)).parallel_map(lQN_format.format)
         elif 's' in lQN_format or 'a' in lQN_format: 
-            lQNp[lQN_label+"'"] = pd.Series(states_u_df[lQN_label].str.replace('(','').str.replace(')','').values).parallel_map(lQN_format.format)
-            lQNpp[lQN_label+'"'] = pd.Series(states_l_df[lQN_label].str.replace('(','').str.replace(')','').values).parallel_map(lQN_format.format)
+            lQNp[lQN_label+"'"] = pd.Series(states_u_df[lQN_label].str.replace('(','',regex=True)
+                                            .str.replace(')','',regex=True).values).parallel_map(lQN_format.format)
+            lQNpp[lQN_label+'"'] = pd.Series(states_l_df[lQN_label].str.replace('(','',regex=True)
+                                             .str.replace(')','',regex=True).values).parallel_map(lQN_format.format)
     localQNp = pd.DataFrame(lQNp).sum(axis=1).map('{: >15}'.format) 
     localQNpp = pd.DataFrame(lQNpp).sum(axis=1).map('{: >15}'.format)  
 
@@ -1058,7 +1047,6 @@ def convert_exomol2hitran(read_path, states_df, trans_part_df):
     return(hitran_res_df)
 
 def conversion_exomol2hitran(read_path, states_df, trans_part_df):
-    
     print('Convert data from the ExoMol format to the HITRAN format.')  
     t = Timer()
     t.start()
@@ -1070,7 +1058,7 @@ def conversion_exomol2hitran(read_path, states_df, trans_part_df):
         pass
     else:
         os.makedirs(conversion_folder, exist_ok=True)  
-    conversion_path = (conversion_folder + isotopologue + '__' + dataset + '.par')[0]
+    conversion_path = conversion_folder + isotopologue + '__' + dataset + '.par'
     hitran_format = "%2s%1s%12.6f%10.3E%10.3E%5.3f%5.3f%10.4f%4.2f%8s%15s%15s%15s%15s%6s%12s%1s%7.1f%7.1f"
     np.savetxt(conversion_path, hitran_res_df, fmt=hitran_format)
 
@@ -1381,7 +1369,6 @@ def convert_hitran2broad(hitran_df, Jpp_df):
     return(hitran2exomol_air_df, hitran2exomol_self_df)
 
 def conversion_states(hitran2exomol_states_df):
-
     print('Convert data from the HITRAN format to the ExoMol format states.')  
     t = Timer()
     t.start()
@@ -1529,14 +1516,20 @@ def linelist(states_part_df,trans_part_df):
 
 # Stick spectra
 def exomol_stick_spectra(read_path, states_part_df, trans_part_df, T):
-    
     print('Calculate stick spectra.')  
     t = Timer()
     t.start()
 
     A, v, Ep, Epp, gp, Jp, Jpp, stick_qn_df = linelist(states_part_df,trans_part_df)
     Q = read_exomol_pf(read_path, T)
-    I = cal_abscoefs(v, gp, A, Epp, Q, abundance)
+    if abs_emi == 'Absorption':
+        print('Absorption stick spectra')
+        I = cal_abscoefs(v, gp, A, Epp, Q, abundance)
+    elif abs_emi == 'Emission':
+        print('Emission stick spectra')
+        I = cal_emicoefs(v, gp, A, Ep, Q, abundance)
+    else:
+        raise ImportError("Please choose one from: 'Absoption' or 'Emission'.")       
     stick_st_dic = {'v':v, 'I':I, "J'":Jp, "E'":Ep, 'J"':Jpp, 'E"':Epp}
     stick_st_df = pd.DataFrame(stick_st_dic)
     stick_spectra_df = pd.concat([stick_st_df, stick_qn_df], axis='columns')

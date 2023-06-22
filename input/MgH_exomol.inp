@@ -12,12 +12,12 @@ SavePath                                /home/jingxin/data/pyexocross/
 
 
 # Functions #
-Conversion                              0
-PartitionFunctions                      0
-SpecificHeats                           0
-CoolingFunctions                        0
-Lifetimes                               0
-StickSpectra                            0
+Conversion                              1
+PartitionFunctions                      1
+SpecificHeats                           1
+CoolingFunctions                        1
+Lifetimes                               1
+StickSpectra                            1
 CrossSections                           1
 
 
@@ -55,8 +55,8 @@ Cutoff(Y/N)                             Y          25             # Default valu
 Threshold(Y/N)                          N          1e-30          # Default value 1e-30
 UncFilter(Y/N)                          N          0.001
 QNsFilter(Y/N)                          N          par[+]   e/f[e]   v[0,1,2,3]  
-DopplerHWHM(Y/N)                        N          0.1            # Set Doppler HWHM as a constant
-LorentzianHWHM(Y/N)                     N          0.1            # Set Lorentzian HWHM as a constant
+DopplerHWHM(Y/N)                        Y          0.1            # Set Doppler HWHM as a constant
+LorentzianHWHM(Y/N)                     Y          0.1            # Set Lorentzian HWHM as a constant
 
 Broadeners                              Default    Air    Self    H2    He    CO2
 Ratios                                  1.0        0.0    0.0     0.0   0.0   0.0
