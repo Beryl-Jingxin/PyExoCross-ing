@@ -1,20 +1,20 @@
-# Basic information #
-Database                                HITRAN
-Molecule                                MgH
-Isotopologue                            24Mg-1H
-Dataset                                 XAB
+# Data source #
+Database                                ExoMol
+Molecule                                LiOH
+Isotopologue                            7Li-16O-1H
+Dataset                                 OYT7
 MolIsoID                                501
 
 
 # File path #
-ReadPath                                /home/jingxin/data/pyexocross/conversion/24Mg-1H__XAB.par
+ReadPath                                /mnt/data/exomol/exomol3_data/
 SavePath                                /home/jingxin/data/pyexocross/
 
 
 # Functions #
-Conversion                              1
+Conversion                              0
 PartitionFunctions                      0
-SpecificHeats                           0
+SpecificHeats                           1
 CoolingFunctions                        0
 Lifetimes                               0
 StickSpectra                            0
@@ -23,12 +23,12 @@ CrossSections                           0
 
 # Quantum numbers #
 QNslabel                                par  e/f   eS    v     Lambda   Sigma    Omega
-QNsformat                               %1s  %1s   %13s  %3d   %1d      %7s      %7s
+QNsformat                               %1s  %1s   %13s  %3d   %1d      %7.1f    %7.1f
 
 
 # Conversion #
-ConversionFormat                        2  
-ConversionUncertainty                   0.005
+ConversionFormat                        1  
+ConversionUncertainty                   0.01
 ConversionFrequncyRange                 0                 30000      
 GlobalQNLabel                           eS       v        Omega
 GlobalQNFormat                          %10s     %1d      %4s
@@ -49,20 +49,20 @@ None
 Temperature                             300
 Pressure                                1
 Range                                   0          30000
-Npoints/BinSize                         Npoints    30001
+Npoints/BinSize                         BinSize    1
 
 Cutoff(Y/N)                             N          25             # Default value 25
 Threshold(Y/N)                          N          1e-30          # Default value 1e-30
 UncFilter(Y/N)                          N          0.001
 QNsFilter(Y/N)                          N          par[+]   e/f[e]   v[0,1,2,3]  
 DopplerHWHM(Y/N)                        Y          3              # Set Doppler HWHM as a constant
-LorentzianHWHM(Y/N)                     Y          0.7            # Set Lorentzian HWHM as a constant
+LorentzianHWHM(Y/N)                     N          0.7            # Set Lorentzian HWHM as a constant
 
 Broadeners                              Default    Air    Self    H2    He    CO2
 Ratios                                  1.0        0.0    0.0     0.0   0.0   0.0
 
 Absorption/Emission                     Absorption                # 'Absorption' or 'Emission'
-Profile                                 SciPyVoigt        
+Profile                                 Gaussian        
 Wavenumber(wn)/wavelength(wl)           wn                        # 'wn' or 'wl'
 
 

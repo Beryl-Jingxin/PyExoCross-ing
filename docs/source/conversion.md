@@ -10,7 +10,7 @@
 
 `1` means convert data format from ExoMol to HITRAN. In this case, `Database` should be `ExoMol`.
 
-`2` means convert data format from HITRAn to ExoMol. In this case, `Database` should be `HITRAN`.
+`2` means convert data format from HITRAN to ExoMol. In this case, `Database` should be `HITRAN`.
 
 ## Quantum number label
 
