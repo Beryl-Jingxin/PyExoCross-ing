@@ -12,18 +12,18 @@ SavePath                                /home/jingxin/data/pyexocross/
 
 
 # Functions #
-Conversion                              1
-PartitionFunctions                      1
-SpecificHeats                           1
-CoolingFunctions                        1
-Lifetimes                               1
+Conversion                              0
+PartitionFunctions                      0
+SpecificHeats                           0
+CoolingFunctions                        0
+Lifetimes                               0
 StickSpectra                            1
-CrossSections                           1
+CrossSections                           0
 
 
 # Quantum numbers #
 QNslabel                                par  e/f   eS    v     Lambda   Sigma    Omega
-QNsformat                               %1s  %1s   %13s  %3d   %1d      %7.1f    %7.1f
+QNsformat                               %1s  %1s   %13s  %3d   %2d      %7.1f    %7.1f
 
 
 # Conversion #

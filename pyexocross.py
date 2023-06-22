@@ -79,6 +79,15 @@ def inp_para(inp_filepath):
     StickSpectra = int(inp_df[col0.isin(['StickSpectra'])][1])
     CrossSections = int(inp_df[col0.isin(['CrossSections'])][1])
     
+    # Quantum numbers
+    NeedQNs = Conversion + StickSpectra + CrossSections
+    if NeedQNs != 0:
+        QNslabel_list = list(inp_df[col0.isin(['QNslabel'])].iloc[0])[1:]
+        QNsformat_list = list(inp_df[col0.isin(['QNsformat'])].iloc[0])[1:]
+    else:
+        QNslabel_list = []
+        QNsformat_list = [] 
+    
     # Convert from one format to another
     if Conversion != 0:
         ConversionFormat = int(inp_df[col0.isin(['ConversionFormat'])][1])
@@ -174,15 +183,7 @@ def inp_para(inp_filepath):
             QNs_label = []
             QNs_value = []
         else:
-            raise ImportError("Please type the correct quantum number filter choice 'Y' or 'N' into the input file.")
-
-        NeedQNs = Conversion + StickSpectra + CrossSections
-        if NeedQNs != 0:
-            QNslabel_list = list(inp_df[col0.isin(['QNslabel'])].iloc[0])[1:]
-            QNsformat_list = list(inp_df[col0.isin(['QNsformat'])].iloc[0])[1:]
-        else:
-            QNslabel_list = []
-            QNsformat_list = []  
+            raise ImportError("Please type the correct quantum number filter choice 'Y' or 'N' into the input file.") 
             
         DopplerHWHMYN = inp_df[col0.isin(['DopplerHWHM(Y/N)'])][1].values[0]
         if DopplerHWHMYN in ['Y', 'Yes', 'yes', 'YES']:
@@ -212,12 +213,11 @@ def inp_para(inp_filepath):
     else:
         bin_size = 0
         N_point = 0
+        cutoff = 'None'
         threshold = 'None'
         QNsFilter = []
         QNs_label = []
-        QNs_value = []   
-        QNslabel_list = []
-        QNsformat_list = []          
+        QNs_value = []         
         alpha_HWHM = 'None'        
         gamma_HWHM = 'None'
         broadeners = []
@@ -876,11 +876,11 @@ def read_unc_states(states_df):
     else:
         col_gfac = []
     fullcolname = ['id','E','g','J'] + col_unc + col_lifetime + col_gfac + QNslabel_list
+    states_unc_df = states_unc_df.iloc[:, : len(fullcolname)]
     states_unc_df.columns = fullcolname  
     colnames = ['id','E','g'] + col_unc + GlobalQNLabel_list + LocalQNLabel_list
     states_unc_df = states_unc_df[colnames] 
     states_unc_df = convert_QNValues_exomol2hitran(states_unc_df, GlobalQNLabel_list, LocalQNLabel_list)
-    pd.set_option("display.max_columns",30) 
     return(states_unc_df)
 
 def convert_QNFormat_exomol2hitran(states_u_df, states_l_df, GlobalQNLabel_list, GlobalQNFormat_list, LocalQNLabel_list, LocalQNFormat_list):
@@ -1538,7 +1538,7 @@ def exomol_stick_spectra(read_path, states_part_df, trans_part_df, T):
         J_format = '%7s'
     else:
         J_format = '%7.1f'
-    QNs_format = str(QNsformat_list).replace("', '"," ").replace("['","").replace("']","").replace('d','s').replace('.1f','s')
+    QNs_format = (str(QNsformat_list).replace("', '"," ").replace("['","").replace("']","").replace('d','s').replace('.1f','s'))
     
     ss_folder = save_path + '/stick_spectra/stick/'
     if os.path.exists(ss_folder):
