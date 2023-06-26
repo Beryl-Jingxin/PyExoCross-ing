@@ -47,7 +47,7 @@ def inp_para(inp_filepath):
     
     # Find the maximum column for all the rows.
     with open(inp_filepath, 'r') as temp_f:
-        col_count = max([len(l.split("%")) for l in temp_f.readlines()])
+        col_count = max([len([x for x in l.split(" ") if x.strip()]) for l in temp_f.readlines()])
     # Generate column names  (names will be 0, 1, 2, ..., maximum columns - 1).
     column_names = [i for i in range(col_count)] 
     inp_df = pd.read_csv(inp_filepath, sep='\\s+', header = None, names=column_names, usecols=column_names)
@@ -84,6 +84,8 @@ def inp_para(inp_filepath):
     if NeedQNs != 0:
         QNslabel_list = list(inp_df[col0.isin(['QNslabel'])].iloc[0])[1:]
         QNsformat_list = list(inp_df[col0.isin(['QNsformat'])].iloc[0])[1:]
+        QNslabel_list = [x for x in QNslabel_list if x == x]
+        QNsformat_list = [x for x in QNsformat_list if x == x]
     else:
         QNslabel_list = []
         QNsformat_list = [] 
