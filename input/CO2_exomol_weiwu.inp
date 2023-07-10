@@ -7,8 +7,8 @@ MolIsoID                                21
 
 
 # File path #
-ReadPath                                /mnt/data/exomol/exomol3_data/
-SavePath                                /home/jingxin/data/pyexocross/
+ReadPath                                ./
+SavePath                                ./
 
 
 # Functions #
